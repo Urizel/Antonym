@@ -72,10 +72,10 @@ public class SearchActivity extends AppCompatActivity
 
     @Override
     protected void onNewIntent(Intent intent) {
-
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             onSearchButtonClicked(query);
+            // XXX Intent types not exposed or used within  app.
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             Uri data = intent.getData();
             SearchView searchView = (SearchView) findViewById(R.id.action_search);
@@ -274,6 +274,7 @@ public class SearchActivity extends AppCompatActivity
             return;
         } else if (savedVersionCode == DOESNT_EXIST) {
             // This is a new install (or the user cleared the shared preferences)
+            // XXX empty initializer?
             searchResults = "";
             searchResults = searchResults + Constants.DEFAULT_SEARCH_RESULTS;
             searchResults = searchResults.toUpperCase();

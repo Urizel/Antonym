@@ -33,6 +33,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 
                     quizActivityIntent.putExtra(Constants.ALERT_DIALOG_STATE, true);
                     quizActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    // XXX Why start activity if it is already started?
                     context.startActivity(quizActivityIntent);
                 } else {
                     //Toast.makeText(context, "Internet is available", Toast.LENGTH_SHORT).show();

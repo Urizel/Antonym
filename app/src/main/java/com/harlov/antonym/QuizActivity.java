@@ -118,6 +118,7 @@ public class QuizActivity extends AppCompatActivity
 
                 URL urlQuiz = new URL(Constants.QUIZ_ACTIVITY_URL_QUIZ);
                 HttpURLConnection urlConnection = (HttpURLConnection) urlQuiz.openConnection();
+                // XXX Connection leak
                 inputStream = new BufferedInputStream(urlConnection.getInputStream());
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
@@ -125,6 +126,7 @@ public class QuizActivity extends AppCompatActivity
                 String line = null;
 
                 while ((line = reader.readLine()) != null){
+                    // XXX Concat?
                     sb.append(line + "\n");
                 }
 
@@ -144,6 +146,7 @@ public class QuizActivity extends AppCompatActivity
             return null;
         }
 
+        // XXX Access level
         protected void outputQuizData(JSONArray jsonArrayQuiz) {
 
             final String PREFS_NAME = Constants.QUIZ_ACTIVITY_NEXT_DATA_PREF;
@@ -489,6 +492,7 @@ public class QuizActivity extends AppCompatActivity
         // Check for first run or upgrade
         if (currentVersionCode == savedVersionCode) {
             // This is just a normal run
+            // XXX Context type
             Intent mServiceIntent = new Intent(getBaseContext(), InternetCheckIntentService.class);
             getBaseContext().startService(mServiceIntent);
             return;
@@ -516,6 +520,7 @@ public class QuizActivity extends AppCompatActivity
         prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply();
     }
 
+    // XXX Component fiddling?
     @Override
     protected void onPause() {
         super.onPause();

@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+// XXX Purpose? Already has network change receiver.
 public class InternetCheckIntentService extends IntentService {
     private static final String TAG = "InternetCheck";
 
@@ -26,6 +27,7 @@ public class InternetCheckIntentService extends IntentService {
 
         if (isNetworkConnected == true){
             Log.w(TAG, "isNetworkConnected() = true, Network is connected");
+            // XXX Purpose? Flaws?
             isInternetAvailable = isInternetAvailable();
         } else {
             Log.w(TAG, "isNetworkConnected() = false, Network is not connected");
